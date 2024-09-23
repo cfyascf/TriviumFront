@@ -1,0 +1,41 @@
+.navbar_container 
+    height: 100vh
+    min-width: 65px
+    background-color: var(--green)
+    position: absolute
+
+    display: flex
+    flex-direction: column
+    justify-content: space-between
+    align-items: center
+    padding: 30px 0px
+
+    .navbar 
+        display: flex
+        flex-direction: column
+        gap: 20px
+
+        .button 
+            display: flex
+            gap: 6px
+            height: fit-content
+            color: white
+            background-color: transparent
+            cursor: pointer
+
+            span 
+                font-size: 1.9rem
+
+@media (max-width: 512px)
+    .navbar_container
+        width: 100%
+        height: 60px
+        flex-direction: row
+        padding: 0px 20px
+        // bottom: 0
+
+        .navbar
+            flex-direction: row
+        
+
+        

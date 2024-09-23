@@ -1,6 +1,6 @@
 import styled from "./styles.module.sass";
 
-export const Login = () => {
+const Login = () => {
     return (
         <div className={styled.page}>
             <div className={styled.title_section}>
@@ -17,3 +17,5 @@ export const Login = () => {
         </div>
     );
 }
+
+export default Login;
