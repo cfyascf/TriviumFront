@@ -8,11 +8,15 @@ export const Login = () => {
                     <p className={styled.title}>Welcome to </p><p className={styled.title}><span className={styled.highlight}>Trivium</span>!</p>
                     <p className={styled.description}>Trivium is a platform to test yourself against your friends in a insane knowledge battle!</p>
                 </div>
+                <div className={styled.img_section}>
+                    <img className={styled.img} src="/mascote_pink.png" alt="" />
+                </div>
             </div>
             <div className={styled.form_section}>
                 <div className={styled.form_container}>
-                    <div>
-                        <h1 className={styled.form_title}>Sign Up!</h1>
+                    <div className={styled.signin_container}>
+                        <h1 className={styled.form_title}>Sign In!</h1>
+                        <p>Entra aí pô mó daorinha o bagulho, na moral!</p>
                     </div>
                     <form action="">
                         <div className={styled.form_input}>
@@ -23,8 +27,14 @@ export const Login = () => {
                             <label htmlFor="">Password</label>
                             <input className={styled.input} type="password" name="" id="" />
                         </div>
-                        <div className={styled.form_button}>
-                            <button className={styled.button}>Start</button>
+                        <div className={styled.bottom_form}>
+                            <div className={styled.signup_container}>
+                                <p className={styled.question}>Don't have an account?</p>
+                                <p className={styled.signup_link}>Sign up</p>
+                            </div>
+                            <div className={styled.form_button}>
+                                <button className={styled.button}>Start</button>
+                            </div>
                         </div>
                     </form>
                 </div>
