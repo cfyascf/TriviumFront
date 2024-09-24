@@ -2,30 +2,35 @@
     display: flex
     gap: 40px
     position: relative
+    top: 6vh
     width: 96vw
-    min-height: 100vh
-    left: 65px
-    padding: 80px
+    min-height: 94vh
+    padding: 40px 80px
+    z-index: 0
 
     .profile
         background-color: white
         min-height: 100%
         width: 30%
-        border: 2px solid black
         display: flex
         flex-direction: column
         align-items: center
         justify-content: center
-        gap: 60px
+        gap: 30px
         border-radius: 15px
 
         .user
             display: flex
             flex-direction: column
             align-items: center
+            border: 1px solid black
+            width: 90%
+            padding: 40px 0px
+            border-radius: 15px
+            // background-color: #baeeff
 
             .profile_picture
-                width: 13vw
+                width: 9vw
                 margin-bottom: 20px
 
             .data
@@ -34,9 +39,48 @@
                 justify-content: center
                 align-items: center
 
-        .nav
+                h1
+                    font-family: "Poppins"
+
+            .achievements
+                margin-top: 30px
+
+                p
+                    font-family: "Poppins"
+                    font-size: 1.3rem
+                    font-weight: 600
+                    margin-bottom: 10px
+
+                .nav
+                    display: flex
+                    gap:10px
+
+                    .button
+                        background-color: var(--yellow)
+                        width: 50px
+                        height: 50px
+                        border-radius: 50%
+                        display: flex
+                        justify-content: center
+                        align-items: center
+
+        .card
             display: flex
-            gap:10px
+            justify-content: space-between
+            align-items: center
+            border: 1px solid black
+            width: 90%
+            padding: 20px 40px
+            border-radius: 15px
+            // background-color: #baeeff
+
+            .title
+                font-size: 1.5rem
+
+            .details
+                font-weight: 700
+                display: flex
+                gap: 10px
 
             .button
                 background-color: var(--yellow)
@@ -47,11 +91,14 @@
                 justify-content: center
                 align-items: center
 
+                span 
+                    color: black
+                    font-size: 1.8rem
+
     .history
         background-color: white
         min-height: 100%
         width: 70%
-        border: 2px solid black
         border-radius: 15px
 
 @media (max-width: 512px)

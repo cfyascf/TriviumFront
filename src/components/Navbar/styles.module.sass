@@ -1,81 +1,43 @@
 .navbar_container 
-    height: 100vh
-    min-width: 65px
-    background-color: var(--green)
-    position: absolute
-
     display: flex
-    flex-direction: column
-    justify-content: space-between
-    align-items: center
-    padding: 30px 0px
+    justify-content: center
+    height: 6vh
+    min-width: 100%
+    background-color: var(--green)
+    position: fixed
+    padding: 0px 50px
+    z-index: 99
 
     .navbar 
+        width: fit-content
+        height: 100%
         display: flex
-        flex-direction: column
-        gap: 20px
-
-        .button 
-            display: flex
-            gap: 6px
-            height: fit-content
-            color: white
-            background-color: transparent
-            cursor: pointer
-            // -webkit-text-stroke-width: 2px
-            // -webkit-text-stroke-color: #000
-
-            span 
-                font-size: 2rem
-
-        .options
-            position: fixed
-            background-color: white
-            padding: 17px
-            border-radius: 15px
-            left: 58px
-            top: 80px
-            border: 1px solid black
-            display: flex
-            flex-direction: column
-            gap: 10px
-
-            .option
-                &:hover
-                    cursor: pointer
-                    text-decoration: underline
-                    color: white
-
-        .config
-            position: fixed
-            background-color: white
-            padding: 17px
-            border-radius: 15px
-            border: 1px solid black
-            display: flex
-            flex-direction: column
-            gap: 10px
-            left: 58px
-
-            .option
-                &:hover
-                    cursor: pointer
-                    text-decoration: underline
-                    color: white
+        align-items: center
+        justify-content: space-between
+        gap: 100px
+        color: white
 
         ._hidden
             display: none
 
-@media (max-width: 512px)
-    .navbar_container
-        width: 100%
-        height: 60px
-        flex-direction: row
-        padding: 0px 20px
-        // bottom: 0
+        .brand_name
+            width: 10rem
 
-        .navbar
-            flex-direction: row
+        .button
+            list-style-type: none
+            font-size: 1.3rem
+            font-weight: 600
+
+// @media (max-width: 512px)
+//     .navbar_container
+//         width: 100%
+//         height: 60px
+//         flex-direction: row
+//         padding: 0px 20px
+//         // bottom: 0
+
+//         .navbar
+//             flex-direction: row
         
 
         
