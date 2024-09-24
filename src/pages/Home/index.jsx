@@ -1,6 +1,7 @@
 import styled from "./styles.module.sass";
 import Navbar from "../../components/Navbar";
 import pp from "/profile_picture.png";
+import { ToastContainer } from 'react-toastify';
 
 const Home = () => {
     return (

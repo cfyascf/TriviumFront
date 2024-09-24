@@ -8,7 +8,7 @@ export const requestHook = () => {
     }
     
     const handleRequest = async (uri: string, verb: string, data: any) => {
-        const url = 'http://127.0.0.1:5000' + uri
+        const url = 'http://localhost:8080/api/v1' + uri
         console.log(url + "oi ")
         let response = ''
 
