@@ -1,7 +1,8 @@
 :root {
-  font-family: "Roboto", system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: "Poppins";
   line-height: 1.3;
   font-weight: 400;
+  color: #3f3f3f;
   background-color: var(--background-color);
 
   /* font-synthesis: none;
