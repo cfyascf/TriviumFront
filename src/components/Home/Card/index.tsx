@@ -15,12 +15,12 @@ export const ProfileCard = ({ title, description, score, time, icon } : IProfile
                 <h1 className={styled.title}> { title } </h1>
                 <p> { description } </p>
                 <div className={styled.details}>
-                    <p> { score } </p>
-                    <p> { time } </p>
+                    <p>Score: { score } </p>
+                    <p>Time: { time } </p>
                 </div>
             </div>
             <div className={styled.botton}>
-                <div><span className="material-symbols-outlined"> { icon } </span></div>
+                <span className="material-symbols-outlined"> { icon } </span>
             </div>
         </div>
     );
