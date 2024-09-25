@@ -1,0 +1,156 @@
+.page 
+    display: flex
+    width: 100%
+    height: 100vh
+    background-color: var(--cream)
+    background-image: url("/background.png")
+    background-size: 100%
+    object-fit: cover
+
+    .title_section 
+        width: 50%
+        background-color: var(--purple)
+        display: flex
+        justify-content: center
+        align-items: center
+        flex-direction: column
+        gap: 100px
+
+        .title_container    
+            display: flex
+            flex-direction: column
+            justify-content: center
+            align-items: center
+            gap: 10px
+
+            .title 
+                color: white
+                font-size: 3.5rem
+                font-weight: 900
+                line-height: 50px
+                width: 80%
+                text-align: center
+
+            .highlight 
+                color: var(--yellow)
+
+            .description 
+                text-align: center
+                color: white
+                font-size: 1.3rem
+                width: 70%
+                margin-top: 50px
+
+        .img_section
+            .img
+                width: 350px
+
+    .form_section 
+        width: 100%
+        display: flex
+        align-items: center
+        justify-content: center
+
+        .form_container 
+            background-color: white
+            width: 60%
+            height: 60%
+            display: flex
+            justify-content: center
+            align-items: center
+            flex-direction: column
+            gap: 40px
+            border-radius: 35px
+            // border: 2px solid #000000
+
+            .signin_container
+                display: flex
+                flex-direction: column
+                gap: 10px
+                align-items: center
+
+                .form_title
+                    color: var(--yellow)
+                    font-size: 2.5rem
+                    box-shadow: 0px 0px 0px 0px rgba(255, 255, 255, 0.1)
+
+
+@media (max-width: 1024px) and (min-width: 769px)
+    .page 
+        .title_section 
+            width: 40%
+
+            .title_container 
+                padding: 20px
+                .title 
+                    font-size: 2.5rem
+
+                .description 
+                    font-size: 1.0rem
+
+            .img_section
+                .img
+                    width: 250px
+
+        .form_section 
+            width: 60%
+
+            .form_container 
+                width: 90%
+
+@media (max-width: 768px) 
+    .page 
+        flex-wrap: wrap
+        height: 100vh
+        width: 100vw
+
+        .form_section
+            width: 100%
+            height: 100vh
+            background-image: url("/background.png")
+            background-size: 100%
+            object-fit: cover
+
+            .form_container
+                height: 60vh
+                width: 90vw
+
+        .title_section 
+            width: 100vw
+            height: 100vh
+            .title_container
+                width: 90vw
+
+@media (max-width: 465px) 
+    .page 
+        flex-wrap: wrap
+        height: 100vh
+        width: 100vw
+
+        .form_section
+            width: 100vw
+            height: 100vh
+            .form_container
+                height: 60vh
+                width: 90vw
+                padding: 20px
+                    
+        .title_section 
+            width: 100vw
+            height: 100vh
+
+            .img_section
+                .img
+                    width: 300px
+
+            .title_container
+                width: 90vw
+
+                .title 
+                    font-size: 2.5rem
+                    font-weight: 1000
+
+                .description 
+                    text-align: center
+                    color: white
+                    font-size: 1.0rem

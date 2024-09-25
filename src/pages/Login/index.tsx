@@ -19,8 +19,8 @@ const Login = () => {
             <div className={styled.form_section}>
                 <div className={styled.form_container}>
                     <div className={styled.signin_container}>
-                        <h1 className={styled.form_title}>Sign In!</h1>
-                        <p>Entra aí pô mó daorinha o bagulho, na moral!</p>
+                        <h1 className={styled.form_title}>Sign In</h1>
+                        <p>Enter your info to log in and test yourself!</p>
                     </div>
                     <LoginForm/>
                 </div>

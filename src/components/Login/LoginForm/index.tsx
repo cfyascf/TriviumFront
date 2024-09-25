@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { requestHook } from "../../../hooks/request.hook";
 import styled from "./styled.module.sass";
 import { useState } from "react";
@@ -61,7 +61,7 @@ const LoginForm = () => {
                 <div className={styled.bottom_form}>
                     <div className={styled.signup_container}>
                         <p className={styled.question}>Don't have an account?</p>
-                        <p className={styled.signup_link}>Sign up</p>
+                        <Link to={'/register'}><p className={styled.signup_link}>Sign up</p></Link>
                     </div>
                     <div className={styled.form_button}>
                         <button className={styled.button} type="submit">Start</button>
