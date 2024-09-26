@@ -8,7 +8,7 @@ interface IProfileCardProps {
     icon: string
 }
 
-export const ProfileCard = ({ title, description, score, time, icon } : IProfileCardProps) => {
+export const Card = ({ title, description, score, time, icon } : IProfileCardProps) => {
     return (
         <div className={styled.card}>
             <div className={styled.content}>
@@ -16,11 +16,12 @@ export const ProfileCard = ({ title, description, score, time, icon } : IProfile
                 <p> { description } </p>
                 <div className={styled.details}>
                     <p>Score: { score } </p>
+                    <p>|</p>
                     <p>Time: { time } </p>
                 </div>
             </div>
             <div className={styled.botton}>
-                <span className="material-symbols-outlined"> { icon } </span>
+                <span className="material-symbols-rounded"> { icon } </span>
             </div>
         </div>
     );

@@ -1,13 +1,16 @@
 import styled from "./styles.module.sass";
 
 export const Filter = () => {
-    return (
-        <div className={styled.searchbar_container}>
-            <span className="material-symbols-outlined">search</span>
-            <input className={styled.searchbar} placeholder="Search..." />
-            <button className={styled.filter_button}>Sort</button>
-            <button className={styled.filter_button}>New</button>
-            <button className={styled.filter_button}>Button</button>
+    return <>
+        <div className={styled.content}>
+            <div className={styled.filters_container}>
+                <input className={styled.searchbar} placeholder="Search..." />
+                <span className="material-symbols-rounded">search</span>
+            </div>
+            <div className={styled.filters_container}>
+                <div className={styled.filters}></div>
+                <span className="material-symbols-rounded">filter_alt</span>
+            </div>
         </div>
-    );
+    </>;
 }

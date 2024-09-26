@@ -1,13 +1,27 @@
 .page
     position: relative
-    left: 14vh
+    left: 12vw
     display: flex
     justify-content: center
+    align-items: center
     gap: 40px
+    flex-wrap: wrap
 
-    width: 94vw
-    height: 100%
+    width: 88vw
+    height: 100vh
     z-index: 0
 
     background-image: url("/background.png")
-    background-size: 100%
+    background-size: cover
+    background-repeat: no-repeat
+
+@media (max-width: 1024px)
+    .page
+        padding: 20px 30px
+        gap: 20px
+
+@media (max-width: 770px)
+    .page
+        flex-direction: column
+        left: 0
+        width: 100%

@@ -8,8 +8,8 @@ const Home = () => {
         <>
             <Navbar/>
             <Page>
+                <History/>
                 <Profile/>
-                {/* <History/> */}
             </Page>
         </>
     );
