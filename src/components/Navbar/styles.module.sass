@@ -1,48 +1,89 @@
 .navbar_container 
     display: flex
     justify-content: center
-    height: 6vh
-    min-width: 100%
-    background-color: var(--purple)
+    align-items: center
+
     position: fixed
-    padding: 0px 50px
+    height: 100%
+    width: 24vh
+
+    background-color: var(--purple)
+    padding: 40px 0px
     z-index: 99
 
     .navbar 
-        width: fit-content
-        height: 100%
         display: flex
-        align-items: center
+        flex-direction: column
         justify-content: space-between
-        gap: 100px
+
+        height: 100%
         color: white
 
-        ._hidden
-            display: none
-
-        .brand_name
-            width: 9rem
-
         .button
+            display: flex
+            gap: 10px
+
+            padding: 12px 20px
+            border-radius: 15px
             list-style-type: none
-            font-size: 1.1rem
-            font-weight: 600
-            transition: 0.3s
+            font-size: 1rem
+            font-weight: 500
+            transition: 0.5s
 
             &:hover
-                color: #baa9d8
+                background-color: white 
+                color: var(--purple)
                 cursor: pointer
 
-// @media (max-width: 512px)
-//     .navbar_container
-//         width: 100%
-//         height: 60px
-//         flex-direction: row
-//         padding: 0px 20px
-//         // bottom: 0
+        .content
+            display: flex
+            flex-direction: column
+            gap: 25px
 
-//         .navbar
-//             flex-direction: row
-        
+            .brand_name
+                width: 9rem
+                margin-bottom: 10px
+                align-self: center
+
+            .button_container
+                display: flex
+                flex-direction: column
+                gap: 15px
+
+            .menu_media
+                display: none
+
+@media (max-width: 600px)
+    .navbar_container
+        width: 100%
+        height: 6vh
+        flex-direction: row
+        padding: 0px 20px
+
+        .navbar
+            flex-direction: row
+            width: 100%
+
+            .content
+                width: 100%
+
+                display: flex
+                flex-direction: row
+                align-items: center
+                justify-content: space-between
+
+                .brand_name
+                    margin: 0
+                    width: 7rem
+
+                .button_container
+                    display: none
+
+                .menu_media
+                    display: flex
+            
+            .logout
+                display: none
+    
 
         

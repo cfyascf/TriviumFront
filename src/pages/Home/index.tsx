@@ -1,16 +1,16 @@
-import styled from "./styles.module.sass";
 import Navbar from "../../components/Navbar";
 import { Profile } from "../../components/Home/Profile";
 import { History } from "../../components/Home/History";
+import { Page } from "../../components/Page";
 
 const Home = () => {
     return (
         <>
             <Navbar/>
-            <div className={styled.page}>
+            <Page>
                 <Profile/>
-                <History/>
-            </div>
+                {/* <History/> */}
+            </Page>
         </>
     );
 }

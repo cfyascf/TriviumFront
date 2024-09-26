@@ -1,0 +1,48 @@
+.form_input
+    display: flex
+    flex-direction: column
+    margin-bottom: 20px
+    color: black
+    justify-content: center
+    align-items: center
+    width: fit-content
+
+    label 
+        color: #3f3f3f
+        align-self: start
+
+    .input 
+        padding: 10px 
+        border-radius: 7px
+        background-color: var(--light-purple)
+        font-size: 1rem 
+        color: black
+        transition: border-color 0.3s 
+        color: #3f3f3f
+        font-family: "Poppins"
+        line-height: 1.3
+        font-weight: 400
+        font-size: 0.9rem
+        width: 100%
+
+        &:focus 
+            border-color: #b9b9b9
+            outline: none
+
+@media (min-width: 1025px) 
+    form
+        width: 50%
+        .form_input
+            min-width: 50%
+            width: 100%
+
+
+@media (max-width: 768px) 
+    .form_input
+        min-width: 20vw
+        width: 50vw
+
+@media (max-width: 465px) 
+    .form_input
+        min-width: 20vw
+        width: 60vw
