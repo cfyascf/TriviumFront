@@ -14,18 +14,18 @@ export const History = () => {
     return (
         <div className={styled.history}>
             <div className={styled.header}>
-                <p>History</p>
+                <p className={styled.title}>History</p>
                 <Filter/>
             </div>
             <div className={styled.matches_container}>
-                <Card title="Challengers" description="Using form named NeuralScience" score="2/10" time="08:34" icon="star" />
-                <Card title="Challengers" description="Using form named NeuralScience" score="2/10" time="08:34" icon="star" />
-                <Card title="Challengers" description="Using form named NeuralScience" score="2/10" time="08:34" icon="star" />
-                <Card title="Challengers" description="Using form named NeuralScience" score="2/10" time="08:34" icon="star" />
-                {/* <Card title="Challengers" description="Using form named NeuralScience" score="2/10" time="08:34" icon="star"/>
-                <Card title="Challengers" description="Using form named NeuralScience" score="2/10" time="08:34" icon="star"/> */}
+                <div className={styled.card}><Card title="Challengers" description="Using form named NeuralScience" score="2/10" time="08:34" icon="star" /></div>
+                <div className={styled.card}><Card title="Challengers" description="Using form named NeuralScience" score="2/10" time="08:34" icon="star" /></div>
+                <div className={styled.card}><Card title="Challengers" description="Using form named NeuralScience" score="2/10" time="08:34" icon="star" /></div>
+                <div className={styled.card}><Card title="Challengers" description="Using form named NeuralScience" score="2/10" time="08:34" icon="star" /></div>
+                <div className={styled.card}><Card title="Challengers" description="Using form named NeuralScience" score="2/10" time="08:34" icon="star" /></div>
+                <div className={styled.card}><Card title="Challengers" description="Using form named NeuralScience" score="2/10" time="08:34" icon="star" /></div>
+                {/*<Card title="Challengers" description="Using form named NeuralScience" score="2/10" time="08:34" icon="star"/> */}
             </div>
-            <Pagination/>
         </div>
     );
 }
