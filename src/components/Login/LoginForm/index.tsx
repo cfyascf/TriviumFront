@@ -1,33 +1,38 @@
 import { Link, useNavigate } from "react-router-dom";
-import { requestHook } from "../../../hooks/request.hook";
 import styled from "./styled.module.sass";
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import InputField from "../Input";
+import { LoginData } from "../../../interfaces/login/login";
+import API from "../../../service/API";
 
 const LoginForm = () => {
-    const { handleRequest } = requestHook();
     const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState(""); 
 
-    const handleSend = async (e: any) => {
+    const handleSend = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        const data = {
+        const data: LoginData = {
             email,
             password
         };
 
         try {
-            const response = await handleRequest('/auth', 'POST', data);
-            console.log(response);
+            const response = await API.post('/auth', data, {
+                headers: { 'Content-Type': 'application/json' },
+            });
 
-            sessionStorage.setItem("@USERID", response.data.user._doc._id);
-            sessionStorage.setItem("@USERNAME", response.data.user._doc.fullname);
-            sessionStorage.setItem("@USEREMAIL", response.data.user._doc.email);
-            sessionStorage.setItem("@TOKEN", response.data.token);
+            const { user, token } = response.data;
+            
+        console.log(response)
+
+            sessionStorage.setItem("@USERID", user._doc._id);
+            sessionStorage.setItem("@USERNAME", user._doc.fullname);
+            sessionStorage.setItem("@USEREMAIL", user._doc.email);
+            sessionStorage.setItem("@TOKEN", token);
 
             toast.success("Login successfully!");
             navigate('/home');

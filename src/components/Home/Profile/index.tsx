@@ -8,8 +8,8 @@ export const Profile = () => {
             <div className={styled.user}>
                 <img src={pp} className={styled.profile_picture}></img>
                 <div className={styled.data}>
-                    <h1 className={styled.name}>Name Lastname</h1>
-                    <p>email@gmail.com</p>
+                    <h1 className={styled.name}>{ sessionStorage.getItem('@USERNAME') }</h1>
+                    <p>{ sessionStorage.getItem('@USEREMAIL') }</p>
                 </div>
                 <div className={styled.achievements}>
                     <p>Achievements</p>

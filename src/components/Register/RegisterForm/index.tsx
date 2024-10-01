@@ -1,33 +1,34 @@
 import { useNavigate } from "react-router-dom";
-import { requestHook } from "../../../hooks/request.hook";
 import InputField from "../../Login/Input";
 import styled from "./styles.module.sass";
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 import { toast } from "react-toastify";
+import { RegisterData, RegisterResponse } from "../../../interfaces/register/register";
+import API from "../../../service/API";
 
 const RegisterForm = () => {
-    const { handleRequest } = requestHook();
     const navigate = useNavigate();
     const [fullname, setFullname] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [repeatPassword, setRepeatPassword] = useState("");
 
-    const handleSend = async (e: any) => {
+    const handleSend = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
         if(password != repeatPassword)
             toast.error("The passwords do not match.");
 
-        const data = {
+        const data: RegisterData = {
             fullname,
             email,
             password
         };
 
         try {
-            const response = await handleRequest('/users', 'POST', data);
-            console.log(response.data.message);
+            const response: RegisterResponse  = await API.post('/users', data, {
+                headers: { 'Content-Type': 'application/json' },
+            });
 
             toast.success(response.data.message);
             navigate('/');
