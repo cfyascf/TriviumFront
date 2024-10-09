@@ -1,7 +1,8 @@
+import LoginForm from "../../components/Login/LoginForm";
 import styled from "./styles.module.sass";
 import brand from "/brand_name_yellow.png";
 import 'react-toastify/dist/ReactToastify.css';
-import LoginForm from "../../components/Login/LoginForm";
+// import LoginForm from "../../components/Login/LoginForm";
 
 const Login = () => {
 
