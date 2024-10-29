@@ -5,9 +5,11 @@ import './index.css'
 import { RouterProvider } from 'react-router-dom'
 import mainRouter from './routes/main.routes'
 import { ToastContainer } from 'react-toastify'
+import { SpeedInsights } from '@vercel/speed-insights/react';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
+    <SpeedInsights/>
     <RouterProvider router={mainRouter}/>
     <ToastContainer />
   </StrictMode>,
