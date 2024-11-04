@@ -25,15 +25,27 @@
 
             padding: 12px 20px
             border-radius: 15px
-            list-style-type: none
             font-size: 1rem
             font-weight: 500
             transition: 0.5s
 
             &:hover
                 background-color: white 
-                color: var(--purple)
                 cursor: pointer
+
+            &:hover .link
+                color: var(--purple)
+
+            &:hover span
+                color: var(--purple)
+
+            li
+                list-style-type: none
+
+            .link
+                color: white
+                text-decoration: none
+
 
         .content
             display: flex

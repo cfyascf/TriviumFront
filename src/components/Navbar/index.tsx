@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "./styles.module.sass";
 import brand from "/brand_name_w&y.png";
 
@@ -10,19 +11,19 @@ const Navbar = () => {
                     <div className={styled.button_container}>
                         <div className={styled.button}>
                             <span className="material-symbols-rounded">person</span>
-                            <li><a>Profile</a></li>
+                            <li><Link to="/home" className={styled.link}>Profile</Link></li>
                         </div>
                         <div className={styled.button}>
                             <span className="material-symbols-rounded">article</span>
-                            <li><a>Create form</a></li>
+                            <li><Link to="" className={styled.link}>Create form</Link></li>
                         </div>
                         <div className={styled.button}>
                             <span className="material-symbols-rounded">group</span>
-                            <li><a>Create room</a></li>
+                            <li><Link to="" className={styled.link}>Create room</Link></li>
                         </div>
                         <div className={styled.button}>
                             <span className="material-symbols-rounded">search</span>
-                            <li><a>Search</a></li>
+                            <li><Link to="" className={styled.link}>Search</Link></li>
                         </div>
                     </div>
                     <div className={styled.menu_media}><span className="material-symbols-rounded">menu</span></div>
