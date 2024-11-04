@@ -5,14 +5,16 @@ interface IProfileCardProps {
     description: string,
     score: string,
     time: string,
-    icon: string
+    icon: string,
+    form: string
 }
 
-export const Card = ({ title, description, score, time, icon } : IProfileCardProps) => {
+export const Card = ({ title, description, score, time, icon, form } : IProfileCardProps) => {
     return (
         <div className={styled.card}>
             <div className={styled.content}>
                 <h1 className={styled.title}> { title } </h1>
+                <h2> { form } </h2>
                 <p> { description } </p>
                 <div className={styled.details}>
                     <p>Score: { score } </p>
