@@ -14,7 +14,7 @@ interface IMatch {
 
 interface IScore {
     _id: string
-    points: number
+    points?: number
 }
 
 interface IForm {
@@ -54,7 +54,7 @@ export const History = () => {
             <div className={styled.matches_container}>
                 {matches.map(match => (
                     <div className={styled.card} key={match._id}>
-                        <Card title={match.name} description={match.formId.description} score={match.score.points+"/"+match.formId.qty_questions} time="08:34" icon="star" form={match.formId.title}/>
+                        <Card title={match.name} description={match.formId.description} score={((!match.score?.points)? "0" : match.score?.points) +"/"+match.formId.qty_questions} time="08:34" icon="star" form={match.formId.title}/>
                     </div>
                 ))}
             </div>
