@@ -23,6 +23,8 @@ export const Form = () => {
     const [formId, setFormId] = useState("");
     const navigate = useNavigate();
 
+    const navigate = useNavigate()
+
     useEffect(() => {
         const fetchForms = async () => {
             try {
@@ -64,6 +66,10 @@ export const Form = () => {
         }
     }
 
+    const handleCancel = () => {
+        navigate("/home")
+    }
+
     return (
         <div className={styled.form_container}>
             <h1>Create room</h1>
@@ -81,8 +87,8 @@ export const Form = () => {
                 </select>
             </div>
             <div className={styled.button_group}>
-                <button>Cancel</button>
-                <button onClick={()=> handleSend()}>Create</button>
+                <button onClick={() => handleCancel}>Cancel</button>
+                <button onClick={() => handleSend}>Create</button>
             </div>
         </div>
     );
