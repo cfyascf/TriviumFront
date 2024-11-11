@@ -23,8 +23,6 @@ export const Form = () => {
     const [formId, setFormId] = useState("");
     const navigate = useNavigate();
 
-    const navigate = useNavigate()
-
     useEffect(() => {
         const fetchForms = async () => {
             try {
