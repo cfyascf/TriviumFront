@@ -1,3 +1,4 @@
+
 .navbar_container 
     display: flex
     justify-content: center
@@ -19,34 +20,6 @@
 
         height: 100%
 
-        .button
-            display: flex
-            gap: 10px
-
-            padding: 12px 20px
-            border-radius: 15px
-            font-size: 1rem
-            font-weight: 500
-            transition: 0.5s
-
-            &:hover
-                background-color: white 
-                cursor: pointer
-
-            &:hover .link
-                color: var(--purple)
-
-            &:hover span
-                color: var(--purple)
-
-            li
-                list-style-type: none
-
-            .link
-                color: white
-                text-decoration: none
-
-
         .content
             display: flex
             flex-direction: column
@@ -61,6 +34,36 @@
                 display: flex
                 flex-direction: column
                 gap: 15px
+
+                .button
+                    display: flex
+                    gap: 10px
+
+                    padding: 12px 20px
+                    border-radius: 15px
+                    font-size: 1rem
+                    font-weight: 500
+                    transition: 0.5s
+
+                    color: white
+
+                    &:hover
+                        background-color: white 
+                        cursor: pointer
+                        color: var(--purple)
+
+                .selected 
+                    display: flex
+                    gap: 10px
+
+                    padding: 12px 20px
+                    border-radius: 15px
+                    font-size: 1rem
+                    font-weight: 500
+
+                    color: var(--purple)
+                    background-color: white 
+                    cursor: pointer
 
             .menu_media
                 display: none

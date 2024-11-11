@@ -1,6 +1,12 @@
+import { Link, useNavigate } from "react-router-dom";
 import styled from "./styles.module.sass";
 
 export const Form = () => {
+    const navigate = useNavigate()
+
+    const handleCancel = () => {
+        navigate('/home')
+    }
     return (
         <div className={styled.form_container}>
             <h1>Create room</h1>
@@ -17,7 +23,7 @@ export const Form = () => {
                 </select>
             </div>
             <div className={styled.button_group}>
-                <button>Cancel</button>
+                <button onClick={() => handleCancel()}>Cancel</button>
                 <button>Create</button>
             </div>
         </div>
