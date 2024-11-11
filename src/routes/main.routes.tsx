@@ -39,7 +39,7 @@ const mainRouter = createBrowserRouter([
         )
     },
     {
-        path: "/waiting-room",
+        path: "/waiting-room/:id",
         element: (
             <WaitingRoom/>
         )

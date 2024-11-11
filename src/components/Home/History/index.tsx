@@ -3,6 +3,7 @@ import styled from "./styles.module.sass";
 import { Card } from "../Card";
 import { Filter } from "../Filter";
 import API from "../../../service/API";
+import { NoData } from "../../NoData";
 
 interface IMatch {
     _id: string
@@ -52,11 +53,18 @@ export const History = () => {
                 <Filter/>
             </div>
             <div className={styled.matches_container}>
-                {matches.map(match => (
-                    <div className={styled.card} key={match._id}>
-                        <Card title={match.name} description={match.formId.description} score={((!match.score?.points)? "0" : match.score?.points) +"/"+match.formId.qty_questions} time="08:34" icon="star" form={match.formId.title}/>
-                    </div>
-                ))}
+                { 
+                
+                    matches.length > 0 ? 
+                    
+                    matches.map(match => (
+                        <div className={styled.card} key={match._id}>
+                            <Card title={match.name} description={match.formId.description} score={((!match.score?.points)? "0" : match.score?.points) +"/"+match.formId.qty_questions} time="08:34" icon="star" form={match.formId.title}/>
+                        </div>
+                    )) : 
+
+                    <NoData/>
+                }
             </div>
         </div>
     );

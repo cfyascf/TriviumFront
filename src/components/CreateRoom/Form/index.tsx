@@ -21,8 +21,7 @@ export const Form = () => {
     const [forms, setForms] = useState<IForm[]>([]);
     const [name, setName] = useState("");
     const [formId, setFormId] = useState("");
-
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchForms = async () => {
@@ -33,7 +32,6 @@ export const Form = () => {
                     }});
 
                     setForms(Object.values(response.data.data))
-
             } catch (error) {
                 console.log(error)
             }
@@ -59,7 +57,7 @@ export const Form = () => {
             });
 
             toast.success("Room create successfully!");
-            console.log(response)
+            navigate(`/waiting-room/${response.data.data._doc._id}`);
 
         } catch (error) {
             console.log(error)
@@ -87,7 +85,7 @@ export const Form = () => {
                 </select>
             </div>
             <div className={styled.button_group}>
-                <button onClick={() => handleCancel}>Cancel</button>
+                <button onClick={() => handleCancel()}>Cancel</button>
                 <button onClick={() => handleSend}>Create</button>
             </div>
         </div>
