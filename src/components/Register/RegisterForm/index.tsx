@@ -30,6 +30,8 @@ const RegisterForm = () => {
                 headers: { 'Content-Type': 'application/json' },
             });
 
+            console.log(response);
+
             toast.success(response.data.message);
             navigate('/');
             

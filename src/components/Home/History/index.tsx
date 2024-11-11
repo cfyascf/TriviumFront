@@ -4,9 +4,28 @@ import { Card } from "../Card";
 import { Filter } from "../Filter";
 import API from "../../../service/API";
 
+interface IMatch {
+    _id: string
+    formId: IForm
+    admId: string
+    name: string
+    score: IScore
+}
+
+interface IScore {
+    _id: string
+    points?: number
+}
+
+interface IForm {
+    title: string
+    description: string
+    qty_questions: number
+}
+
 export const History = () => {
 
-    const [matches, setMatches] = useState([]);
+    const [matches, setMatches] = useState<IMatch[]>([]);
 
     useEffect(() => {
 
@@ -17,8 +36,7 @@ export const History = () => {
                       'Authorization': `Bearer ${sessionStorage.getItem("@TOKEN")}`,
                     }});
 
-                    console.log(response);
-                    // setMatches();
+                    setMatches(Object.values(response.data.data))
     
             } catch (error) {
                 console.log(error)
@@ -27,20 +45,18 @@ export const History = () => {
         fetchData();
     }, []);
 
-    return (
+    return (    
         <div className={styled.history}>
             <div className={styled.header}>
                 <p className={styled.title}>History</p>
                 <Filter/>
             </div>
             <div className={styled.matches_container}>
-                <div className={styled.card}><Card title="Challengers" description="Using form named NeuralScience" score="2/10" time="08:34" icon="star" /></div>
-                <div className={styled.card}><Card title="Challengers" description="Using form named NeuralScience" score="2/10" time="08:34" icon="star" /></div>
-                <div className={styled.card}><Card title="Challengers" description="Using form named NeuralScience" score="2/10" time="08:34" icon="star" /></div>
-                <div className={styled.card}><Card title="Challengers" description="Using form named NeuralScience" score="2/10" time="08:34" icon="star" /></div>
-                <div className={styled.card}><Card title="Challengers" description="Using form named NeuralScience" score="2/10" time="08:34" icon="star" /></div>
-                <div className={styled.card}><Card title="Challengers" description="Using form named NeuralScience" score="2/10" time="08:34" icon="star" /></div>
-                {/*<Card title="Challengers" description="Using form named NeuralScience" score="2/10" time="08:34" icon="star"/> */}
+                {matches.map(match => (
+                    <div className={styled.card} key={match._id}>
+                        <Card title={match.name} description={match.formId.description} score={((!match.score?.points)? "0" : match.score?.points) +"/"+match.formId.qty_questions} time="08:34" icon="star" form={match.formId.title}/>
+                    </div>
+                ))}
             </div>
         </div>
     );
