@@ -1,9 +1,6 @@
 import { useState } from "react"
-import { Option } from "../../components/CreateForm/Option"
-import { TextInput } from "../../components/CreateForm/TextInput"
 import Navbar from "../../components/Navbar"
 import { Page } from "../../components/Page"
-import { SelectBox } from "../../components/CreateForm/SelectBox"
 import styled from "./styles.module.sass"
 import { Question } from "../../components/CreateForm/Question"
 import { useNavigate } from "react-router-dom"
@@ -40,7 +37,7 @@ export const CreateForm = () => {
                     }
                     <div className={styled.button_group}>
                         <button onClick={() => handleCancel()}>Cancel</button>
-                        <button onClick={() => handleSend}>Create</button>
+                        <button onClick={() => handleSend()}>Create</button>
                     </div>
                 </div>
             </Page>
