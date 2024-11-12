@@ -6,6 +6,7 @@ import { Page } from "../../components/Page"
 import { SelectBox } from "../../components/CreateForm/SelectBox"
 import styled from "./styles.module.sass"
 import { Question } from "../../components/CreateForm/Question"
+import { useNavigate } from "react-router-dom"
 
 export interface IOption {
     right: boolean,
@@ -15,7 +16,12 @@ export interface IOption {
 
 export const CreateForm = () => {
     const [questions, setQuestions] = useState(1)
+    const navigate = useNavigate()
     console.log(questions)
+
+    const handleCancel = () => {
+        navigate("/home")
+    }
 
     return (
         <>
