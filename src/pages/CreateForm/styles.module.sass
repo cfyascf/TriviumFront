@@ -8,6 +8,7 @@
     background-color: white
     padding: 60px
 
+
     .title
         width: 93%
         font-size: 1.5rem
@@ -41,3 +42,38 @@
         .subtitle_input::placeholder
             font-size: 1rem
             color: black
+
+    .button_group
+        display: flex
+        gap: 15px
+        align-self: flex-end
+        margin-right: 7%
+
+        button 
+            width: 7vw
+            height: 5vh
+            border-radius: 5px
+
+            &:last-child
+                border: 0
+                color: white
+                font-weight: 600
+                background-color: var(--yellow)
+                transition: 0.1s
+
+                &:hover 
+                    background-color: white
+                    color: var(--yellow)
+                    border: 2px solid var(--yellow)
+
+            &:first-child
+                background-color: white
+                border: 2px solid var(--purple)
+                color: var(--purple)
+                font-weight: 600
+                transition: 0.1s
+
+                &:hover 
+                    background-color: var(--purple)
+                    color: white
+            

@@ -14,7 +14,7 @@ export interface IOption {
 }
 
 export const CreateForm = () => {
-    const [questions, setQuestions] = useState(1) 
+    const [questions, setQuestions] = useState(1)
     console.log(questions)
 
     return (
@@ -32,6 +32,10 @@ export const CreateForm = () => {
                             <Question questions={questions} setQuestions={setQuestions} />
                         ))
                     }
+                    <div className={styled.button_group}>
+                        <button onClick={() => handleCancel()}>Cancel</button>
+                        <button onClick={() => handleSend}>Create</button>
+                    </div>
                 </div>
             </Page>
         </>
