@@ -38,7 +38,7 @@ const Navbar = () => {
                                 <li className={styled.link}>Create form</li>
                             </div>
                         </Link>
-                        <Link to="" style={{ textDecoration: 'none' }}>
+                        <Link to="/search-profiles" style={{ textDecoration: 'none' }}>
                             <div className={styled.button}>
                                 <span className="material-symbols-rounded">search</span>
                                 <li className={styled.link}>Search</li>
