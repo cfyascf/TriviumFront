@@ -40,6 +40,7 @@ export const Form = () => {
     }, []);
 
     const handleSend = async () => {
+        console.log("dsagf")
         const admId = sessionStorage.getItem("@USERID");
 
         if (!admId) {
@@ -86,7 +87,7 @@ export const Form = () => {
             </div>
             <div className={styled.button_group}>
                 <button onClick={() => handleCancel()}>Cancel</button>
-                <button onClick={() => handleSend}>Create</button>
+                <button onClick={() => handleSend()}>Create</button>
             </div>
         </div>
     );
