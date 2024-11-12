@@ -26,16 +26,16 @@ const Navbar = () => {
                                 <li className={styled.link}>Join room</li>
                             </div>
                         </Link>
-                        <Link to="/create-form" style={{ textDecoration: 'none' }}>
-                            <div className={location.pathname == "/create-form" ? styled.selected : styled.button}>
-                                <span className="material-symbols-rounded">article</span>
-                                <li className={styled.link}>Create form</li>
-                            </div>
-                        </Link>
                         <Link to="/create-room" style={{ textDecoration: 'none' }}>
                             <div className={location.pathname == "/create-room" ? styled.selected : styled.button}>
                                 <span className="material-symbols-rounded">group</span>
                                 <li className={styled.link}>Create room</li>
+                            </div>
+                        </Link>
+                        <Link to="/create-form" style={{ textDecoration: 'none' }}>
+                            <div className={location.pathname == "/create-form" ? styled.selected : styled.button}>
+                                <span className="material-symbols-rounded">article</span>
+                                <li className={styled.link}>Create form</li>
                             </div>
                         </Link>
                         <Link to="" style={{ textDecoration: 'none' }}>
