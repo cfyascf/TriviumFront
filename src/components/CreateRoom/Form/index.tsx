@@ -85,7 +85,7 @@ export const Form = () => {
                 </select>
             </div>
             <div className={styled.button_group}>
-                <button onClick={() => handleCancel}>Cancel</button>
+                <button onClick={() => handleCancel()}>Cancel</button>
                 <button onClick={() => handleSend}>Create</button>
             </div>
         </div>
