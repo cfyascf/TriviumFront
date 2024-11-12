@@ -21,7 +21,7 @@ export const SelectBox = ({ selectedValue, setSelectedValue }: ISelectBoxProps) 
                     <p>{ selectedValue == 2 ? 'Two options' : 'Four options' }</p>
                     <span className="material-symbols-rounded">keyboard_arrow_down</span>
                 </div>
-                <div className={options ? styled.options : styled.hidden}>
+                <div className={options ? styled.options_ : styled.hidden}>
                     <div onClick={() => handleClick(2)}><p>Two options</p></div>
                     <div onClick={() => handleClick(4)}><p>Four options</p></div>
                 </div>
