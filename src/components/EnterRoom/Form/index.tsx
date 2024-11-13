@@ -9,11 +9,13 @@ export const Form = () => {
     const [pin, setPin] = useState("");
     const navigate = useNavigate();
 
-    const { setMatch, setWebSocket, setQuestions, setIndex } = useContext(GameContext);
+    const { match, questions, index, setMatch, setWebSocket, setQuestions, setIndex } = useContext(GameContext);
+    console.log(setWebSocket)
+    
 
     const joinRoom = async () => {
         const userId = sessionStorage.getItem("@USERID");
-        const data = { userId, pin }
+        const data = { userId, pin };
 
         try {
             const response = await API.post(`/match/add`, data, {
@@ -21,8 +23,6 @@ export const Form = () => {
                 'Authorization': `Bearer ${sessionStorage.getItem("@TOKEN")}`,
             }});
 
-            console.log(response);
-            
             setMatch(response.data.data.match);
             setQuestions(response.data.data.questions);
             setIndex(0);
@@ -37,9 +37,10 @@ export const Form = () => {
 
     const createWebSocket = () => {
         const ws = new WebSocket("ws://localhost:8080");
+        console.log(ws)
 
         ws.addEventListener("open", () => {
-            setWebSocket(ws);
+            console.log(setWebSocket)
             joinRoom();
         })
 

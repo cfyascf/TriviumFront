@@ -22,7 +22,7 @@ const GameContext = createContext({} as IGameContext);
 
 const GameProvider = ({ children }: { children: ReactNode }) => {
     const [match, setMatch] = useState("");
-    const [websocket, setWebsocket] = useState<WebSocket | undefined>(undefined);
+    const [websocket, setWebSocket] = useState<WebSocket | undefined>(undefined);
     const [questions, setQuestions] = useState<IQuestion[]>([]);
     const [index, setIndex] = useState(0);
 
@@ -31,7 +31,7 @@ const GameProvider = ({ children }: { children: ReactNode }) => {
     };
 
     const handleSetWebSocket = (value: WebSocket) => {
-        setWebsocket(value);
+        setWebSocket(value);
     };
 
     const handleSetQuestions = (value: IQuestion[]) => {
