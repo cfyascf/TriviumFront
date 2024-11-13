@@ -37,7 +37,7 @@ const LoginForm = () => {
             toast.success("Login successfully!");
             navigate('/home');
             
-        } catch (error) {
+        } catch (error: any) {
             toast.error(error.response?.data?.message);
         }
     }
