@@ -7,13 +7,16 @@ import mainRouter from './routes/main.routes'
 import { ToastContainer } from 'react-toastify'
 import { SpeedInsights } from '@vercel/speed-insights/react';
 import { GameProvider } from './contexts/gameContext';
+import { BeforeUnloadEvent } from './events/BeforeUnload';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <GameProvider>
       <SpeedInsights/>
       <ToastContainer />
-      <RouterProvider router={mainRouter}/>
+      <BeforeUnloadEvent>
+        <RouterProvider router={mainRouter}/>
+      </BeforeUnloadEvent>
     </GameProvider>
   </StrictMode>,
 )

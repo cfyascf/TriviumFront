@@ -18,10 +18,11 @@
         padding: 30px 50px
         border-radius: 20px 
 
+        position: relative
         display: flex
         flex-direction: column
         align-items: center
-        // justify-content: center
+        // justify-content: space-between
         gap: 30px
 
         .header
@@ -37,28 +38,71 @@
                 font-size: 2rem
                 font-weight: 700
 
-        .players
+        .content 
             display: flex
             flex-direction: column
-            gap: 10px
+            justify-content: space-between
+            height: 100%
 
-            .card_container
+            .players
                 display: flex
-                flex-wrap: wrap
-                gap: 20px
-                overflow-y: scroll    
-                max-height: 43vh
+                flex-direction: column
+                gap: 10px
 
-                .card
+                .card_container
                     display: flex
+                    flex-wrap: wrap
+                    gap: 20px
+                    overflow-y: scroll    
+                    // max-height: 43vh
+                    // min-height: 43vh
 
-                    background-color: var(--light-purple)
-                    justify-content: center
-                    align-items: center
-                    gap: 10px
-                    padding: 15px 20px
-                    border-radius: 10px
+                    .card
+                        display: flex
+                        width: 25%
+                        height: 80px
 
-                    .pp
-                        width: 2.5rem
+                        background-color: var(--light-purple)
+                        justify-content: center
+                        align-items: center
+                        gap: 10px
+                        padding: 15px 20px
+                        border-radius: 10px
+
+                        .pp
+                            width: 2.5rem
+
+            .button_group
+                display: flex
+                gap: 15px
+                align-self: flex-end
+                // position: absolute
+                bottom: 0
+
+            button 
+                width: 7vw
+                height: 5vh
+                border-radius: 5px
+
+                &:last-child
+                    border: 0
+                    color: white
+                    font-weight: 600
+                    background-color: var(--yellow)
+                    transition: 0.1s
+
+                    &:hover 
+                        background-color: white
+                        color: var(--yellow)
+                        border: 2px solid var(--yellow)
+
+                &:first-child
+                    border: 2px solid var(--purple)
+                    color: var(--purple)
+                    font-weight: 600
+                    transition: 0.1s
+
+                    &:hover 
+                        background-color: var(--purple)
+                        color: white
 

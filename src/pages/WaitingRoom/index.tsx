@@ -1,8 +1,9 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import styled from "./styles.module.sass";
 import pp from "/profile_picture.png";
 import API from "../../service/API";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { GameContext } from "../../contexts/gameContext";
 
 interface IMatch {
     _id: string
@@ -21,7 +22,10 @@ interface IUser {
 export const WaitingRoom = () => {
     const { id } = useParams();
     const [users, setUsers] = useState<IUser[]>();
-    const [match, setMatch] = useState<IMatch>();
+    const [currentMatch, setMatch] = useState<IMatch>();
+    const { websocket, match } = useContext(GameContext);
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchMatch = async () => {
@@ -40,24 +44,53 @@ export const WaitingRoom = () => {
         fetchMatch();
     }, [])
 
+    const handleExit = async () => {
+        const data = {
+            'userId': sessionStorage.getItem('@USERID'),
+            'matchId': match
+        }
+
+        try {
+            const response = await API.post('/match/remove', data, {
+                headers: { 'Content-Type': 'application/json' },
+            });
+            
+            if(websocket != undefined) {
+                websocket.close(); 
+            }
+            console.log(response);
+
+            navigate('/home');
+        
+        } catch(err) {
+            console.log(`Could not remove user from room: ${err}`)
+        }
+    }
+
     return (
         <div className={styled.page}>
             <div className={styled.content_container}>
                 <div className={styled.header}>
                     <h2>Room code</h2>
-                    <h1>{match?.pin}</h1>
+                    <h1>{currentMatch?.pin}</h1>
                 </div>
-                <div className={styled.players}>
-                    <h2>Players</h2>
+                <div className={styled.content}>
+                    <div className={styled.players}>
+                        <h2>Players</h2>
 
-                    {users?.map(user => (
-                        <div key={user._id} className={styled.card_container}>
-                            <div className={styled.card}>
-                                <img className={styled.pp} src={pp}></img>
-                                <h2>{user.fullname}</h2>
-                            </div>
+                        <div className={styled.card_container}>
+                            {users?.map(user => (
+                                <div className={styled.card}>
+                                    <img className={styled.pp} src={pp}></img>
+                                    <h2>{user.fullname}</h2>
+                                </div>
+                            ))}
                         </div>
-                    ))}
+                    </div>
+                    <div className={styled.button_group}>
+                        <button onClick={() => handleExit()}>Exit</button>
+                        <button onClick={() => handleStart()}>Start</button>
+                    </div>
                 </div>
             </div>
         </div>
