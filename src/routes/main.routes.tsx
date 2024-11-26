@@ -7,6 +7,7 @@ import { EnterRoom } from "../pages/EnterRoom";
 import { WaitingRoom } from "../pages/WaitingRoom";
 import { CreateForm } from "../pages/CreateForm";
 import { Search } from "../pages/Search";
+import { GameForm } from "../pages/GameForm";
 
 const mainRouter = createBrowserRouter([
     {
@@ -55,6 +56,12 @@ const mainRouter = createBrowserRouter([
         path: "/search-profiles",
         element: (
             <Search/>
+        )
+    },
+    {
+        path: "/game",
+        element: (
+            <GameForm/>
         )
     },
 ]);

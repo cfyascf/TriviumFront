@@ -1,7 +1,5 @@
-import { ReactNode, useContext, useEffect } from "react";
+import { ReactNode, } from "react";
 import styled from "./styles.module.sass";
-import { GameContext } from "../../contexts/gameContext";
-import API from "../../service/API";
 
 interface IPageProps {
     children: ReactNode;

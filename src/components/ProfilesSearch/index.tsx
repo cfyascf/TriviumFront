@@ -11,7 +11,6 @@ interface IUser {
     email: string
 }
 
-
 export const ProfilesSearch = () => {
 
     const [users, setUsers] = useState<IUser[]>([]);

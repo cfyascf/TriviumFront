@@ -10,11 +10,9 @@ export const Card = ({ fullname, email } : IProfileCardProps) => {
         <div className={styled.card}>
             <div className={styled.content}>
                 <h1 className={styled.title}> { fullname } </h1>
-                {/* <h2> { form } </h2> */}
                 <p> { email } </p>
             </div>
             <div className={styled.botton}>
-                {/* <span className="material-symbols-rounded"> { icon } </span> */}
             </div>
         </div>
     );
