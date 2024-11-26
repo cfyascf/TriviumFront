@@ -2,64 +2,54 @@ import { useEffect, useState } from "react";
 import styled from "./styles.module.sass";
 import API from "../../service/API";
 import { Filter } from "../Home/Filter";
-import { Card } from "../Home/Card";
 import { NoData } from "../NoData";
+import { Card } from "./Card";
 
-interface IMatch {
+interface IUser {
     _id: string
-    formId: IForm
-    admId: string
-    name: string
-    score: IScore
+    fullname: string
+    email: string
 }
 
-interface IScore {
-    _id: string
-    points?: number
-}
-
-interface IForm {
-    title: string
-    description: string
-    qty_questions: number
-}
 
 export const ProfilesSearch = () => {
 
-    const [matches, setMatches] = useState<IMatch[]>([]);
+    const [users, setUsers] = useState<IUser[]>([]);
+    const [search, setSearch] = useState<string>("");
 
     useEffect(() => {
 
         const fetchData = async () => {
             try {
-                const response = await API.get(`/match?userid=${sessionStorage.getItem("@USERID")}`, {
+                const response = await API.get(`/users/all?search=${search}`, {
                     headers: {
                       'Authorization': `Bearer ${sessionStorage.getItem("@TOKEN")}`,
                     }});
 
-                    setMatches(Object.values(response.data.data))
+                    console.log(search)
+                    setUsers(Object.values(response.data.data.users))
     
             } catch (error) {
                 console.log(error)
             }
         }
         fetchData();
-    }, []);
+    }, [search]);
 
     return (    
         <div className={styled.history}>
             <div className={styled.header}>
                 <p className={styled.title}>Profiles</p>
-                <Filter/>
+                <Filter onSearch={setSearch}/>
             </div>
             <div className={styled.matches_container}>
                 { 
                 
-                    matches.length > 0 ? 
+                setUsers.length > 0 ? 
                     
-                    matches.map(match => (
-                        <div className={styled.card} key={match._id}>
-                            <Card title={match.name} description={match.formId.description} score={((!match.score?.points)? "0" : match.score?.points) +"/"+match.formId.qty_questions} time="08:34" icon="star" form={match.formId.title}/>
+                users.map(user => (
+                        <div className={styled.card} key={user._id}>
+                            <Card fullname={user.fullname} email={user.email}/>
                         </div>
                     )) : 
 

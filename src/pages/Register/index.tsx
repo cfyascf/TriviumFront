@@ -1,5 +1,4 @@
 import { RegisterContainer } from "../../components/Register/RegisterContainer";
-import RegisterForm from "../../components/Register/RegisterForm";
 import styled from "./styles.module.sass";
 import brand from "/brand_name_yellow.png";
 
