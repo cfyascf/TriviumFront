@@ -8,6 +8,7 @@ import { WaitingRoom } from "../pages/WaitingRoom";
 import { CreateForm } from "../pages/CreateForm";
 import { Search } from "../pages/Search";
 import { GameForm } from "../pages/GameForm";
+import { RankingRoom } from "../pages/RankingRoom";
 
 const mainRouter = createBrowserRouter([
     {
@@ -62,6 +63,12 @@ const mainRouter = createBrowserRouter([
         path: "/game",
         element: (
             <GameForm/>
+        )
+    },
+    {
+        path: "/game/ranking",
+        element: (
+            <RankingRoom/>
         )
     },
 ]);
