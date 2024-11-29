@@ -1,11 +1,12 @@
 import styled from "./styles.module.sass"
 
 interface ITextInputProps {
-    label : string
+    label : string,
+    setQuestionDescription: React.Dispatch<React.SetStateAction<string>>
 }
 
-export const TextInput = ({ label } : ITextInputProps) => {
+export const TextInput = ({ label, setQuestionDescription } : ITextInputProps) => {
     return (
-        <input placeholder={ label } className={styled.input}/>
+        <input placeholder={ label } className={styled.input} onChange={(e) => setQuestionDescription(e.target.value)}/>
     )
 }

@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Navbar from "../../components/Navbar"
 import { Page } from "../../components/Page"
 import styled from "./styles.module.sass"
@@ -11,13 +11,23 @@ export interface IOption {
     index: number
 }
 
+export interface IQuestion {
+    desc: string,
+    options: IOption[]
+}
+
 export const CreateForm = () => {
-    const [questions, setQuestions] = useState(1)
+    const [questionNumber, setQuestionNumber] = useState(1)
+    const questions:IQuestion[] = [];
     const navigate = useNavigate()
-    console.log(questions)
 
     const handleCancel = () => {
         navigate("/home")
+    }
+
+    const fillQuestions = (question: IQuestion, index: number) => {
+        questions[index] = question;
+        console.log(Object.values(questions))
     }
 
     return (
@@ -31,13 +41,13 @@ export const CreateForm = () => {
                         <input className={styled.subtitle_input} type="text" placeholder="Form description here..." />
                     </div>
                     {
-                        Array.from({ length: questions }, (_, index) => (
-                            <Question questions={questions} setQuestions={setQuestions} />
+                        Array.from({ length: questionNumber }, (_, index) => (
+                            <Question fillQuestions={fillQuestions} setQuestionNumber={setQuestionNumber} questionNumber={questionNumber} index={index}/>
                         ))
                     }
                     <div className={styled.button_group}>
                         <button onClick={() => handleCancel()}>Cancel</button>
-                        <button onClick={() => handleSend()}>Create</button>
+                        {/* <button onClick={() => handleSend()}>Create</button> */}
                     </div>
                 </div>
             </Page>

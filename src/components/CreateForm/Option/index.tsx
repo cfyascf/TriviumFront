@@ -1,14 +1,25 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import styled from "./styles.module.sass"
 import { IOption } from "../../../pages/CreateForm"
 
 interface IOptionProps {
-    handleSelect: (option: IOption) => void
+    fillOptions: (option: IOption, index: number) => void,
+    index: number
 }
 
-export const Option = ({ handleSelect }: IOptionProps) => {
+export const Option = ({ fillOptions, index }: IOptionProps) => {
     const [right, setRight] = useState<boolean>(false)
     const [desc, setDesc] = useState<string>('')
+
+    useEffect(() => {
+        const option: IOption = {
+            right: right,
+            desc: desc,
+            index: index
+        }
+        
+        fillOptions(option, index)
+    }, [right, desc])
 
     const handleAnswer = (input_right: boolean | null, input_desc: string | null) => {
         console.log(input_desc, input_right)
@@ -19,8 +30,6 @@ export const Option = ({ handleSelect }: IOptionProps) => {
         if(input_desc != null) {
             setDesc(input_desc)
         }
-
-        handleSelect({ right, desc })
     }
 
     return (
