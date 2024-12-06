@@ -3,7 +3,7 @@ import { createContext, ReactNode, useState } from "react";
 interface IGameContext {
     match: string,
     setMatch: (value: string) => void,
-    form: IForm,
+    form?: IForm,
     setForm: (value: IForm) => void,
     websocket?: WebSocket,
     setWebSocket: (value: WebSocket) => void,

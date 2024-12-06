@@ -9,8 +9,7 @@ export const Form = () => {
     const [pin, setPin] = useState("");
     const navigate = useNavigate();
 
-    const { setMatch, setWebSocket } = useContext(GameContext);
-    console.log(setWebSocket)
+    const { setMatch, setWebSocket, websocket } = useContext(GameContext);
     
 
     const joinRoom = async () => {
@@ -35,10 +34,10 @@ export const Form = () => {
 
     const createWebSocket = () => {
         const ws = new WebSocket("ws://localhost:8080");
-        console.log(ws)
 
         ws.addEventListener("open", () => {
-            console.log(setWebSocket)
+            setWebSocket(ws);
+            console.log(websocket)
             joinRoom();
         })
 
