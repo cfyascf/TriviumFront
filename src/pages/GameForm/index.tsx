@@ -3,6 +3,7 @@ import background from "/background1.png";
 import Option from "../../components/GameForm/Option";
 import Question from "../../components/GameForm/Question";
 import styled from "./styles.module.sass";
+import Timer from "../../components/GameForm/Timer";
 
 export const GameForm = () => {
     const options = [
@@ -15,6 +16,7 @@ export const GameForm = () => {
     return (
         <GamePage backgroundUrl={background}>
             <div className={styled.content}>
+                <Timer sec={10}/>
                 <Question text="Which is the color of Napoleon's white horse?" />
                 <div className={styled.options_content}>
                     <ul className={styled.options}>
