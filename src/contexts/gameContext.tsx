@@ -3,19 +3,20 @@ import { createContext, ReactNode, useState } from "react";
 interface IGameContext {
     match: string,
     setMatch: (value: string) => void,
+    form: IForm,
+    setForm: (value: IForm) => void,
     websocket?: WebSocket,
     setWebSocket: (value: WebSocket) => void,
-    questions: IQuestion[],
-    setQuestions: (value: IQuestion[]) => void,
+    questions: string[],
+    setQuestions: (value: string[]) => void,
     index: number,
     setIndex: (value: number) => void,
 }
 
-interface IQuestion {
-    _id: string,
+interface IForm {
     title: string,
-    formId: string,
-    __v: number
+    description: string,
+    qty_questions: string
 }
 
 const GameContext = createContext({} as IGameContext);
@@ -23,7 +24,8 @@ const GameContext = createContext({} as IGameContext);
 const GameProvider = ({ children }: { children: ReactNode }) => {
     const [match, setMatch] = useState("");
     const [websocket, setWebSocket] = useState<WebSocket | undefined>(undefined);
-    const [questions, setQuestions] = useState<IQuestion[]>([]);
+    const [form, setForm] = useState<IForm | undefined>(undefined);
+    const [questions, setQuestions] = useState<string[]>([]);
     const [index, setIndex] = useState(0);
 
     const handleSetMatch = (value: string) => {
@@ -34,7 +36,7 @@ const GameProvider = ({ children }: { children: ReactNode }) => {
         setWebSocket(value);
     };
 
-    const handleSetQuestions = (value: IQuestion[]) => {
+    const handleSetQuestions = (value: string[]) => {
         setQuestions(value);
     };
 
@@ -42,11 +44,16 @@ const GameProvider = ({ children }: { children: ReactNode }) => {
         setIndex(value);
     };
 
+    const handleSetForm = (form: IForm) => {
+        setForm(form);
+    }
+
     return (
         <GameContext.Provider
             value={{
                 match, setMatch: handleSetMatch,
                 websocket, setWebSocket: handleSetWebSocket,
+                form, setForm: handleSetForm,
                 questions, setQuestions: handleSetQuestions,
                 index, setIndex: handleSetIndex
             }}

@@ -4,6 +4,7 @@ import pp from "/profile_picture.png";
 import API from "../../service/API";
 import { useContext, useEffect, useState } from "react";
 import { GameContext } from "../../contexts/gameContext";
+import { toast } from "react-toastify";
 
 interface IMatch {
     _id: string
@@ -22,8 +23,8 @@ interface IUser {
 export const WaitingRoom = () => {
     const { id } = useParams();
     const [users, setUsers] = useState<IUser[]>();
-    const [currentMatch, setMatch] = useState<IMatch>();
-    const { websocket, match } = useContext(GameContext);
+    const [currentMatch, setCurrentMatch] = useState<IMatch>();
+    const { websocket, match, questions, setQuestions, setForm, index } = useContext(GameContext);
 
     const navigate = useNavigate();
 
@@ -35,7 +36,9 @@ export const WaitingRoom = () => {
                       'Authorization': `Bearer ${sessionStorage.getItem("@TOKEN")}`,
                     }});
                     setUsers(Object.values(response.data.data.users));
-                    setMatch(response.data.data.match);
+                    setCurrentMatch(response.data.data.match);
+                    setQuestions(response.data.data.questions);
+                    setForm(response.data.data.form);
 
             } catch (error) {
                 console.log(error)
@@ -65,6 +68,16 @@ export const WaitingRoom = () => {
         } catch(err) {
             console.log(`Could not remove user from room: ${err}`)
         }
+    }
+
+    const handleStart = () => {
+        if(websocket == undefined) {
+            toast.error("You lost connection to the room.");
+            navigate("/home");
+        }
+
+        websocket?.send("start");
+        navigate(`/game/question/${questions[index]}`);
     }
 
     return (

@@ -1,7 +1,7 @@
 import styled from './styles.module.sass';
 
 interface QuestionProps {
-    text: string;
+    text: string | undefined;
 }
 
 const Question = ({ text }: QuestionProps) => {

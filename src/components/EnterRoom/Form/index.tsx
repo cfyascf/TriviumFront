@@ -9,7 +9,7 @@ export const Form = () => {
     const [pin, setPin] = useState("");
     const navigate = useNavigate();
 
-    const { match, questions, index, setMatch, setWebSocket, setQuestions, setIndex } = useContext(GameContext);
+    const { setMatch, setWebSocket } = useContext(GameContext);
     console.log(setWebSocket)
     
 
@@ -24,8 +24,6 @@ export const Form = () => {
             }});
 
             setMatch(response.data.data.match);
-            setQuestions(response.data.data.questions);
-            setIndex(0);
 
             toast.success(response.data.data.message);
             navigate(`/waiting-room/${response.data.data.match}`)
