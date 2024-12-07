@@ -69,12 +69,12 @@ export const GameForm = () => {
 
             websocket.onmessage = (message) => {
                 const parsed: IMessage = JSON.parse(message.data);
-                console.log(message);
+                // console.log(message);
 
                 switch(parsed.subject) {
                     case "timer_running":
                         setTime(Number(parsed.value));
-                        console.log(time);
+                        // console.log(time);
                         break;
 
                     case "timer_finished":

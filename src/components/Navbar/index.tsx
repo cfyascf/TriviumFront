@@ -4,7 +4,6 @@ import brand from "/brand_name_w&y.png";
 
 const Navbar = () => {
     const location = useLocation()
-    console.log(location)
 
     return (
         <div className={styled.navbar_container}>

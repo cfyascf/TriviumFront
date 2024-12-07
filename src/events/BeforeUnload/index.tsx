@@ -14,17 +14,14 @@ export const BeforeUnloadEvent = ({ children }: IPageProps) => {
             'userId': sessionStorage.getItem('@USERID'),
             'matchId': match
         }
-        console.log(data);
 
         if (websocket != undefined && websocket.readyState === WebSocket.OPEN) {
-            console.log("aquii")
             try {
                 const response = await API.post('/match/remove', data, {
                     headers: { 'Content-Type': 'application/json' },
                 });
                 
                 websocket.close(); 
-                console.log(response);
             
             } catch(err) {
                 console.log(`Could not remove user from room: ${err}`)

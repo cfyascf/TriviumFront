@@ -27,7 +27,6 @@ export const CreateForm = () => {
 
     const fillQuestions = (question: IQuestion, index: number) => {
         questions[index] = question;
-        console.log(Object.values(questions))
     }
 
     return (

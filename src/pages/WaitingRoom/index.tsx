@@ -71,6 +71,7 @@ export const WaitingRoom = () => {
     }
 
     const handleStart = () => {
+        console.log(`oiii: ${websocket}`);
         if(websocket == undefined) {
             toast.error("You lost connection to the room.");
             navigate("/home");
@@ -93,7 +94,7 @@ export const WaitingRoom = () => {
 
                         <div className={styled.card_container}>
                             {users?.map(user => (
-                                <div className={styled.card}>
+                                <div key={user._id} className={styled.card}>
                                     <img className={styled.pp} src={pp}></img>
                                     <h2>{user.fullname}</h2>
                                 </div>
