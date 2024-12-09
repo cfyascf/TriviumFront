@@ -8,31 +8,13 @@ import { useNavigate } from "react-router-dom";
 import Timer from "../../components/GameForm/Timer";
 import { useContext, useEffect, useState } from "react";
 import { GameContext } from "../../contexts/gameContext";
-
-interface IOption {
-    description: string,
-    isRight: boolean,
-}
-
-interface IQuestion {
-    question: IQuestionData,
-    options: IOption[]
-}
-
-interface IQuestionData {
-    _id: string,
-    title: string,
-    formId: string
-}
-
-interface IMessage {
-    subject: string,
-    value: string
-}
+import { IMessage, IQuestion } from "./interfaces";
+import { toast } from "react-toastify";
 
 export const GameForm = () => {
     const [question, setQuestion] = useState<IQuestion>();
     const [time, setTime] = useState(60);
+
     const { websocket, setIndex, index, questions } = useContext(GameContext);
     const navigate = useNavigate();
 
@@ -49,62 +31,69 @@ export const GameForm = () => {
         }
     };
 
-    useEffect(() => {
-        const handleRequest = async () => {
+    const handleRequest = async () => {
+        try {
+            console.log("QUESTION INDEX:", index);
+            const response = await API.get(`/question/${questions[index]}`, {
+                headers: {
+                    'Authorization': `Bearer ${sessionStorage.getItem("@TOKEN")}`,
+                },
+            });
+
+            console.log(`CURRENT QUESTION: ${response.data}`);
+            setQuestion(response.data.data);
+        } catch (error) {
+            toast.error("Failed to fetch question.");
+            console.log(error);
+        }
+    };
+
+    const handleNext = () => {
+        console.log("GAME FINISHED.");
+        if(index >= questions.length - 1) {
+            setIndex(0);
+            websocket?.send("finish");
+            navigate("/game/ranking");
+        }
+
+        setIndex(index + 1);
+        handleRequest();
+        websocket?.send("next");
+    }
+
+    const handleWebSocketMessages = () => {
+        if (!websocket) {
+            console.error("WebSocket not initialized");
+            return;
+        }
+
+        websocket.onmessage = (message) => {
             try {
-                console.log(questions[index]);
-                const response = await API.get(`/question/${questions[index]}`, {
-                    headers: {
-                        'Authorization': `Bearer ${sessionStorage.getItem("@TOKEN")}`,
-                    },
-                });
+                const parsed: IMessage = JSON.parse(message.data);
 
-                console.log(response.data);
-                setQuestion(response.data.data);
-            } catch (error) {
-                console.log(error);
-            }
-        };
+                switch (parsed.subject) {
+                    case "tick":
+                        setTime(Number(parsed.value)); 
+                        break;
 
-        const handleWebSocketMessages = () => {
-            if (!websocket) {
-                console.error("WebSocket not initialized");
-                return;
-            }
+                    case "next": 
+                        handleNext();
+                        break;
 
-            websocket.onmessage = (message) => {
-                try {
-                    const parsed: IMessage = JSON.parse(message.data);
-                    console.log("WebSocket message received:", parsed);
+                    // case "finish":
+                    //     handleFinish();
+                    //     break;
 
-                    switch (parsed.subject) {
-                        case "tick":
-                            setTime(Number(parsed.value)); 
-                            break;
-
-                        case "finish":
-                            console.log("Game finished.");
-
-                            if(index >= questions.length) {
-                                setIndex(0);
-                                navigate("/game/ranking");
-                            }
-
-                            setIndex(index + 1);
-                            console.log(index);
-                            handleRequest();
-                            websocket.send("start");
-                            break;
-
-                        default:
-                            console.warn("Unknown message subject:", parsed.subject);
-                    }
-                } catch (err) {
-                    console.error("Error parsing WebSocket message:", err);
+                    default:
+                        console.warn("Unknown message subject:", parsed.subject);
                 }
-            };
+            } catch (err) {
+                console.error("Error parsing WebSocket message:", err);
+            }
         };
+    };
 
+    useEffect(() => {
         handleRequest();
         handleWebSocketMessages();
 

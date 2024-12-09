@@ -5,6 +5,7 @@ import API from "../../service/API";
 import { useContext, useEffect, useState } from "react";
 import { GameContext } from "../../contexts/gameContext";
 import { toast } from "react-toastify";
+import { IMessage } from "../GameForm/interfaces";
 
 interface IMatch {
     _id: string
@@ -55,7 +56,7 @@ export const WaitingRoom = () => {
         }
 
         try {
-            const response = await API.post('/match/remove', data, {
+            await API.post('/match/remove', data, {
                 headers: { 'Content-Type': 'application/json' },
             });
             
@@ -81,8 +82,37 @@ export const WaitingRoom = () => {
         }
 
         websocket?.send("start");
-        navigate(`/game/question`);
     }
+
+    const handleWebsocketMessages = () => {
+        if(websocket == undefined || !websocket.OPEN) {
+            toast.error("You lost connection to server.");
+            console.log("Connection lost.");
+            return;
+        }
+
+        websocket.onmessage = (message) => {
+            try {
+                const parsed: IMessage = JSON.parse(message.data);
+                console.log("MESSAGE:", parsed);
+
+                switch (parsed.subject) {
+                    case "start":
+                        navigate("/game/question"); 
+                        break;
+
+                    default:
+                        console.warn("Unknown message subject:", parsed.subject);
+                }
+            } catch (err) {
+                console.error("Error parsing WebSocket message:", err);
+            }
+        }
+    }
+
+    useEffect(() => {
+        handleWebsocketMessages();
+    }, []);
 
     return (
         <div className={styled.page}>
