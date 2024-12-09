@@ -60,7 +60,7 @@ const mainRouter = createBrowserRouter([
         )
     },
     {
-        path: "/game/question/:id",
+        path: "/game/question",
         element: (
             <GameForm/>
         )

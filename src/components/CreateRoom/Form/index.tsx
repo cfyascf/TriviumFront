@@ -40,7 +40,6 @@ export const Form = () => {
     }, []);
 
     const handleSend = async () => {
-        console.log("dsagf")
         const admId = sessionStorage.getItem("@USERID");
 
         if (!admId) {
@@ -61,6 +60,7 @@ export const Form = () => {
             navigate(`/waiting-room/${response.data.data._doc._id}`);
 
         } catch (error) {
+            toast.error("Failed creating room.");
             console.log(error)
         }
     }
@@ -79,7 +79,7 @@ export const Form = () => {
             <div className={styled.input_container}>
                 <p>Form</p>
                 <select onChange={(e) => setFormId(e.target.value)} >
-                <option value="" disabled>Choose a form</option>
+                <option disabled value="">Choose a form</option>
                     {forms.map(form => (
                         <option value={form._id} key={form._id}>{form.title}</option>
                     ))}

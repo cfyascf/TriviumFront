@@ -23,6 +23,7 @@ export const Form = () => {
             }});
 
             setMatch(response.data.data.match);
+            console.log(`MATCH SET: ${response.data.data.match}`)
 
             toast.success(response.data.data.message);
             navigate(`/waiting-room/${response.data.data.match}`)
@@ -37,7 +38,7 @@ export const Form = () => {
 
         ws.addEventListener("open", () => {
             setWebSocket(ws);
-            console.log(websocket)
+            console.log(`WEBSOCKET SET: ${websocket}`)
             joinRoom();
         })
 

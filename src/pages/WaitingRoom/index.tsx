@@ -42,6 +42,7 @@ export const WaitingRoom = () => {
 
             } catch (error) {
                 console.log(error)
+                toast.error("Could not fetch match.");
             }
         }
         fetchMatch();
@@ -61,24 +62,26 @@ export const WaitingRoom = () => {
             if(websocket != undefined) {
                 websocket.close(); 
             }
-            console.log(response);
 
             navigate('/home');
         
         } catch(err) {
+            toast.error("Failed to remove user from room.");
             console.log(`Could not remove user from room: ${err}`)
         }
     }
 
     const handleStart = () => {
-        console.log(`oiii: ${websocket}`);
-        if(websocket == undefined) {
+        console.log(`TRYING TO START ON WEBSOCKET: ${websocket}`);
+        console.log(`QUESTIONS: ${questions}`);
+        console.log(`INDEX: ${index}`);
+        if(websocket == undefined || !websocket.OPEN) {
             toast.error("You lost connection to the room.");
             navigate("/home");
         }
 
         websocket?.send("start");
-        navigate(`/game/question/${questions[index]}`);
+        navigate(`/game/question`);
     }
 
     return (

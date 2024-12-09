@@ -4,7 +4,7 @@ import Option from "../../components/GameForm/Option";
 import Question from "../../components/GameForm/Question";
 import styled from "./styles.module.sass";
 import API from "../../service/API";
-import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Timer from "../../components/GameForm/Timer";
 import { useContext, useEffect, useState } from "react";
 import { GameContext } from "../../contexts/gameContext";
@@ -15,9 +15,14 @@ interface IOption {
 }
 
 interface IQuestion {
-    title: string,
-    formId: string,
+    question: IQuestionData,
     options: IOption[]
+}
+
+interface IQuestionData {
+    _id: string,
+    title: string,
+    formId: string
 }
 
 interface IMessage {
@@ -26,82 +31,107 @@ interface IMessage {
 }
 
 export const GameForm = () => {
-    const { id } = useParams();
     const [question, setQuestion] = useState<IQuestion>();
     const [time, setTime] = useState(60);
-    const { websocket } = useContext(GameContext);
-    
+    const { websocket, setIndex, index, questions } = useContext(GameContext);
+    const navigate = useNavigate();
+
     const handleColor = (index: number) => {
-        switch(index) {
+        switch (index) {
             case 0:
                 return "#00B5FF";
-
-            case 1: 
+            case 1:
                 return "#FF52A7";
-            
-            case 2: 
+            case 2:
                 return "#25DC44";
-
-            case 3: 
-                return "#FDD20D"
+            case 3:
+                return "#FDD20D";
         }
-    }
+    };
 
     useEffect(() => {
         const handleRequest = async () => {
             try {
-                const response = await API.get(`/question/${id}`, {
+                console.log(questions[index]);
+                const response = await API.get(`/question/${questions[index]}`, {
                     headers: {
-                    'Authorization': `Bearer ${sessionStorage.getItem("@TOKEN")}`,
-                }});
-    
-                setQuestion(response.data.data);
-    
-            } catch (error) {
-                console.log(error)
-            }
-        }
+                        'Authorization': `Bearer ${sessionStorage.getItem("@TOKEN")}`,
+                    },
+                });
 
-        const handleTime = async() => {
-            if(!websocket) {
+                console.log(response.data);
+                setQuestion(response.data.data);
+            } catch (error) {
+                console.log(error);
+            }
+        };
+
+        const handleWebSocketMessages = () => {
+            if (!websocket) {
+                console.error("WebSocket not initialized");
                 return;
             }
 
             websocket.onmessage = (message) => {
-                const parsed: IMessage = JSON.parse(message.data);
-                // console.log(message);
+                try {
+                    const parsed: IMessage = JSON.parse(message.data);
+                    console.log("WebSocket message received:", parsed);
 
-                switch(parsed.subject) {
-                    case "timer_running":
-                        setTime(Number(parsed.value));
-                        // console.log(time);
-                        break;
+                    switch (parsed.subject) {
+                        case "tick":
+                            setTime(Number(parsed.value)); 
+                            break;
 
-                    case "timer_finished":
-                        return;
+                        case "finish":
+                            console.log("Game finished.");
+
+                            if(index >= questions.length) {
+                                setIndex(0);
+                                navigate("/game/ranking");
+                            }
+
+                            setIndex(index + 1);
+                            console.log(index);
+                            handleRequest();
+                            websocket.send("start");
+                            break;
+
+                        default:
+                            console.warn("Unknown message subject:", parsed.subject);
+                    }
+                } catch (err) {
+                    console.error("Error parsing WebSocket message:", err);
                 }
             };
-        }
+        };
 
-        handleTime();
         handleRequest();
-    }, [time]);
+        handleWebSocketMessages();
+
+        return () => {
+            if (websocket) {
+                websocket.onmessage = null; 
+            }
+        };
+    }, [websocket, index]); 
 
     return (
         <GamePage backgroundUrl={background}>
             <div className={styled.content}>
-                <Timer sec={time}/>
-                <Question text={question?.title} />
+                <Timer sec={time} />
+                <Question text={question?.question.title} />
                 <div className={styled.options_content}>
                     <ul className={styled.options}>
-                        {
-                            question?.options.map((option, index) => (
-                                <Option key={index} text={option.description} color={handleColor(index)} />
-                            ))
-                        }
+                        {question?.options.map((option, index) => (
+                            <Option
+                                key={index}
+                                text={option.description}
+                                color={handleColor(index)}
+                            />
+                        ))}
                     </ul>
                 </div>
             </div>
         </GamePage>
     );
-}
+};
