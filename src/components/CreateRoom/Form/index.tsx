@@ -79,7 +79,7 @@ export const Form = () => {
             <div className={styled.input_container}>
                 <p>Form</p>
                 <select onChange={(e) => setFormId(e.target.value)} >
-                <option disabled value="">Choose a form</option>
+                <option disabled selected>Choose a form</option>
                     {forms.map(form => (
                         <option value={form._id} key={form._id}>{form.title}</option>
                     ))}

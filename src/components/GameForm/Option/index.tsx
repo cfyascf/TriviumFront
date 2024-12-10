@@ -1,30 +1,54 @@
-import { useContext, useEffect, useState } from 'react';
-import styled from './styles.module.sass';
-import { GameContext } from '../../../contexts/gameContext';
+import { useContext } from "react";
+import styled from "./styles.module.sass";
+import { GameContext } from "../../../contexts/gameContext";
+import right from "/right.png";
+import wrong from "/wrong.png";
 
 interface IOptionProps {
-    text: string;
-    color: "#00B5FF" | "#FF52A7" | "#25DC44" | "#FDD20D" | undefined;
+  text: string;
+  isRight: boolean;
+  color: "#00B5FF" | "#FF52A7" | "#25DC44" | "#FDD20D" | undefined;
+  isSelected: boolean;
+  onSelect: () => void;
+  isDisabled: boolean;
+  showAnswer: boolean;
 }
 
-const Option = ({ text, color }: IOptionProps) => {
-    const [answeared, setAnsweared] = useState<boolean>(false);
-    const { websocket } = useContext(GameContext);
+const Option = ({
+  isRight,
+  text,
+  showAnswer,
+  color,
+  isSelected,
+  onSelect,
+  isDisabled,
+}: IOptionProps) => {
+  const { websocket } = useContext(GameContext);
 
-    const handleAnswear = () => {
-        setAnsweared(true);
-        websocket?.send("answear");
+  const handleClick = () => {
+    if (!isDisabled) {
+      onSelect();
     }
+  };
 
-    useEffect(() => {
-        console.log(answeared)
-    })
-
-    return (
-        <li className={answeared != false ? styled.option : styled.clicked} style={{ backgroundColor: color }} onClick={handleAnswear}>
-            {text}
-        </li>
-    );
-}
+  return (
+    <div>
+      <li
+        className={isSelected ? styled.clicked : styled.option}
+        style={{ backgroundColor: color }}
+        onClick={handleClick}
+      >
+        {text}
+        {showAnswer && (
+          <img
+            className={styled.trueOfFalse}
+            src={isRight ? right : wrong}
+            alt={isRight ? "Resposta Correta" : "Resposta Errada"}
+          />
+        )}
+      </li>
+    </div>
+  );
+};
 
 export default Option;
