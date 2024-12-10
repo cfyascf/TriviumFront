@@ -9,6 +9,7 @@ import { CreateForm } from "../pages/CreateForm";
 import { Search } from "../pages/Search";
 import { GameForm } from "../pages/GameForm";
 import { RankingRoom } from "../pages/RankingRoom";
+import { RankingGeralRoom } from "../pages/RankingGeralRoom";
 
 const mainRouter = createBrowserRouter([
     {
@@ -69,6 +70,12 @@ const mainRouter = createBrowserRouter([
         path: "/game/ranking",
         element: (
             <RankingRoom/>
+        )
+    },
+    {
+        path: "/game/ranking/geral",
+        element: (
+            <RankingGeralRoom/>
         )
     },
 ]);
