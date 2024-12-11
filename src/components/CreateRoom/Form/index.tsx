@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import styled from "./styles.module.sass";
 import API from "../../../service/API";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { GameContext } from "../../../contexts/gameContext";
 
 interface IForm {
     _id: string
@@ -22,6 +23,7 @@ export const Form = () => {
     const [name, setName] = useState("");
     const [formId, setFormId] = useState("");
     const navigate = useNavigate();
+    const { setWebSocket, websocket } = useContext(GameContext);
 
     useEffect(() => {
         const fetchForms = async () => {
@@ -55,7 +57,9 @@ export const Form = () => {
             const response = await API.post('/match', data, {
                 headers: { 'Content-Type': 'application/json' },
             });
+            console.log(response);
 
+            createWebSocket();
             toast.success("Room create successfully!");
             navigate(`/waiting-room/${response.data.data._doc._id}`);
 
@@ -67,6 +71,25 @@ export const Form = () => {
 
     const handleCancel = () => {
         navigate("/home")
+    }
+
+    const createWebSocket = () => {
+        const ws = new WebSocket("ws://localhost:8080");
+
+        ws.addEventListener("open", () => {
+            setWebSocket(ws);
+            console.log(`WEBSOCKET SET: ${websocket}`)
+        })
+
+        ws.addEventListener("message", function connect(msg) {
+            const response = JSON.parse(msg.data);
+
+            switch(response.type) {
+                case "connection":
+                    ws.removeEventListener("message", connect);
+                    break;
+            }
+        })
     }
 
     return (
